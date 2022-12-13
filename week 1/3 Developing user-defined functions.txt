@@ -1,0 +1,68 @@
+User-defined functions
+==================
+Created to perform operations that can't be completed with built-in functions
+
+
+User - defined          ===>         Task      ===>           Result
+     code 
+
+------------------------------------------------------------------------------------------
+
+
+User-defined function syntax
+========================
+
+CREATE FUNCTION function_name()
+RETURNS datatype DETERMINISTIC
+RETURN
+
+
+DETERMINISTIC means function always returns the same result for the same input parameters.
+
+
+CREATE FUNCTION FindTotalCost( Cost DECIMAL(5, 2))
+RETURNS DECIMAL(5, 2) DETERMINISTIC
+RETURN (Cost - (Cost * 0.1));
+
+SELECT FindTotalCost(100)
+
+----------------------------------------------------------------------------------------------------------------------------
+
+DELIMITER //
+
+
+CREATE FUNCTION GetTotalCost(Cost DECIMAL(5, 2)) 
+RETURNS DECIMAL(5, 2) DETERMINISTIC
+BEGIN
+	IF (Cost >=100 AND Cost < 500) 
+		THEN SET Cost = Cost - (Cost * 0.1);
+	ELSEIF (Cost >=500) 
+		THEN SET Cost = Cost - (Cost * 0.2);
+	END IF
+RETURN (Cost); 
+END//
+
+
+DELIMITER ;
+
+
+SELECT GetTotalCost(500);
+
+
+DROP FUNCTION GetTotalCost;
+
+
+==================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+

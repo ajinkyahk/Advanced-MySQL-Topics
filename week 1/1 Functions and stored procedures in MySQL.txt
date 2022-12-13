@@ -1,0 +1,98 @@
+Stored Procedures and Fuctions
+==========================
+Wrap code within the body of a function or procedure for repeated use.
+
+
+============================================================
+
+Stored Procedure syntax
+====================
+
+CREATE PROCEDURE GetProductDetails()
+SELECT *
+FROM Products
+
+--------------------------------------------------------------------
+
+Envoke the procedure 
+=================
+CALL GetProductDetails();
+
+
+==============================================================
+
+Function syntax
+==============
+The mod function can be used to find the remainder of 
+the division of two numeric values, x and y.
+
+SELECT MOD (7, 5);
+
+To find the result, invoke the function by using the identifier name within a select statement.
+
+
+--------------------------------------------------------------------------------------------------
+
+Remember that unlike stored procedures, a function always returns a value.
+
+
+M&G used a function to determine the average dollar amount each client spent with their business.
+
+M&G and functions
+===================
+SELECT ClientID, ROUND(AVG( cost ), 2)
+FROM client orders
+GROUP BY ClientID;
+
+This fiunction always returns a value because it specifically targets clients that spent money. 
+
+
+==============================================================================
+
+Key Difference b/w functions and stored procedures
+=========================================
+
+Functions				Stored Procedures
+
+Accept only input parameter		Accept both input and output parameters
+
+Accept input			Accept input and can output 
+Value ==> Fuction			Value ==> Procedure ==> Value
+
+==============================================================================
+
+Fuctions 
+========
+Used to return a specific value.
+
+-------------------------------------------
+
+Stored procedures
+===============
+processing, manipulating and modifying data.
+
+=====================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

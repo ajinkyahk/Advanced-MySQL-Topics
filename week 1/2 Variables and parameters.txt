@@ -1,0 +1,156 @@
+Variable 
+=======
+Used to pass values between SQL statements,
+or between a procedure and a SQL statement
+
+------------------------------------------------------------------------------
+
+Two Ways 
+=========
+
+1. Stored procedure
+=================
+Variables are created inside or outside of a stored procedure
+
+
+2. SELECT statement
+=====================
+Variables are created inside or outside of a SELECT statement.
+
+-------------------------------------------------------------------------------------------------
+
+Variable syntax
+============
+@variable_name = value;
+
+------------------------------------------------------------------------------------------------
+
+Create Variable inside or outside of stored procedure
+==========================================
+
+SET command
+===========
+Assigns a value to a variable within a stored procedure
+
+
+Variables syntax
+==============
+SET @variable_name = value;
+
+SET @order_id = 3;
+
+Now use this variable to delete, update or query the record.
+
+SELECT * FROM OrderID = @order_id;
+
+---------------------------------------------------------------------------------------
+
+DECLARE command variables
+=========================
+DECLARE variable_name DATATYPE DEFAULT VALUE;
+
+DECLARE minimum_order_cost DECIMAL(5, 2) DEFAULT 0;
+
+---------------------------------------------------------------------------------------------
+
+Create Variable inside SELECT statement
+==================================
+SELECT @variable_name := value;
+
+SELECT @max_order := MAX(Cost) FROM Orders;
+
+SELECT @max_order           # access value
+
+------------------------------------------------------------------------------------------------------
+
+Variable inside select statement assign it a value returned from function
+========================================================
+SELECT function() INTO variable_name FROM table_name;
+
+SELECT AVG(Cost) INTO @average_cost FROM Orders;
+
+
+==================================******=====================================
+
+Parameters
+=========
+Pass arguments, or values, to a function or procedure from the outside
+
+--------------------------------------------------------------------
+
+In MySQL a fuction only takes input parameters.
+
+---------------------------------------------------------------------------------
+
+There are three different types of parameters that can be declared in stored procdures.
+
+1 IN                    default parameter  value ==> procedure
+
+2 OUT                    value ==> Procedure ==> Variable
+
+3 INOUT                value ==> Procedure ==> New Value
+--------------------------------------------------------------------------------------------
+
+IN parameter syntax
+=================
+CREATE PROCEDURE procedure_name(IN logic(value1, value2)) SELECT logic;
+
+
+CREATE PROCEDURE CalculateTax( IN Salary DECIMAL(10, 2)) SELECT Salary * 0.2 AS TAX;
+
+CALL CalculateTax(10000);
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+OUT parameter syntax
+===================
+
+CREATE PROCEDURE GetLowestCost (OUT LowestCost DECIMAL(6, 2))
+SELECT MIN(Cost) INTO LowestCost FROM Orders;
+
+
+CALL GetLowstCost (@order_lowest_cost);                   #value from procedure stored in variable
+
+
+SELET @order_lowest_cost;                                #access the variable value
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+INOUT parameter syntax
+=====================
+
+CREATE PROCEDURE SquareAnumber( INOUT aNumber INT)
+BEGIN
+	set aNumber = aNumber * aNumber;
+END
+
+
+SET @x_number = 5;
+
+
+CALL SquareAnumber(@x_number);
+
+
+SELECT @x_number;
+
+============================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
