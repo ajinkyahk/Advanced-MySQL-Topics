@@ -1,0 +1,51 @@
+Complex stored procedure
+=====================
+First, you need to use a delimiter command so that MySQL can compile the code in a begin end block as one compound statement.
+
+Type the delimiter command to change the delimiter from the default semicolon to a double forward slash.
+
+
+DELIMITER //
+
+CREATE PROCEDURE GetProductSummary( OUT NmberOfLowPriceProducts INT, OUT NumberOfHighPriceProducts INT)
+BEGIN
+	SELECT COUNT (ProductID) INTO NumberOfLowPriceProducts FROM Products WHERE Price < 50;
+	SELECT COUNT(ProductID) INTO NumberOfHighPriceProducts FROM Products WHERE Price >= 50;
+END //
+
+
+DELIMITER ;
+
+
+CALL GetProductSummary(@TotalNumberOfLowPriceProducts, @TotalNumberOfHighPriceProducts;
+
+
+SELECT @TotalNumberOfLowPriceProducts, @TotalNumberOfHighPriceProducts;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

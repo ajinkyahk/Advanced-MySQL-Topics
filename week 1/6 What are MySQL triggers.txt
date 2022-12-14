@@ -1,0 +1,81 @@
+Trigger
+======
+A set of actions available in the form of a stored program invoked when an event occurs.
+
+events like INSERT, UPDATE, DELETE
+
+-------------------------------------------------------------
+
+CREATE MySQL TRIGGER
+=======================
+
+CREATE TRIGGER trigger_name
+TRIGGER TYPE
+ON table_name FOR EACH ROW
+BEGIN
+	statement_one
+	statement_two
+END
+
+----------------------------------------------------------------
+
+DROP MySQL TRIGGER
+====================
+
+DROP TRIGGER IF EXISTS schema_name.trigger_name
+
+
+---------------------------------------------------------------------------------
+
+
+Add trigger to database that flags when employees attempt to add a discount of 
+more than 25% to an item. An approval request must then be sent to a manager 
+for any flagged items.
+
+CREATE TRIGGER ApprovalRequest
+AFTER UPDATE
+BEGIN
+	statement_one
+	statement_two
+END
+
+--------------------------------------------------------------------------------
+
+BENEFITS OF TRIGGERS
+=====================
+
+* Keeping a log of records - Useful for maintaining audit trails
+
+
+* Alternative to constraints - Maintain data integrity and run tasks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
