@@ -1,0 +1,185 @@
+Scheduled events
+=============
+A task that takes place at a specific time according to a schedule.
+
+
+Names
+======
+All events have a unique name
+
+
+
+Statements
+=========
+Each event contains one or more SQL statements
+
+
+
+Occurrence
+=========
+Events can occur once or multiple times
+
+==========================================================
+
+One-time events
+=============
+Scheduled events that occur just once
+
+
+
+Reccurring events
+==============
+Scheduled events that occur on a regular basis
+
+============================================================
+
+MySQL CREATE EVENT statement
+=============================
+Scheduled events are created using CREATE EVENT keywords.
+
+
+
+Scheduled events syntax
+===================
+
+CREATE EVENT [ IF NOT EXISTS ] event_name
+ON SCHEDULED schedule_logic 
+DO
+Event_body
+
+
+-------------------------------------------------------------------------------
+
+One-time scheduled event syntax
+==========================
+
+CREATE EVENT [ IF NOT EXISTS ] event_name
+ON SCHEDULE AT CURRENT_TIMESTAMP [+ INTERVAL]
+DO
+Event_body 
+
+----------------------------------------------------------------------------------------
+
+Generate a one off revenue report 12 hours from now
+==========================================
+
+
+One-time scheduled events syntax
+===========================
+
+CREATE EVENT GenerateRevenueReport
+ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 12 HOUR
+DO
+BEGIN
+	INSERT INTO ReportData (OrderID, ClientID, ProductID, Quantity, Cost, Date)
+	SELECT * FROM Orders
+	WHERE DATE 
+	BETWEEN '2022-08-01' AND '2022-08-31';
+END
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+Recurring scheduled event syntax
+==========================
+
+CREATE EVENT [ IF NOT EXIST ] event_name
+ON SCHEDULE 
+EVERY [ +INTERVAL ]
+DO 
+event_body
+
+or
+
+CREATE EVENT [ IF NOT EXIST ] event_name
+ON SCHEDULE 
+EVERY interval STARTS timestamp [ +INTERVAL ] ENDS timestamp [ +INTERVAL ]
+DO 
+event_body
+
+------------------------------------------------------------------------------------------------
+
+CREATE DAILY STOCK CHECK EVENT
+--------------------------------------------------------------
+
+
+reccurring scheduled event syntax
+===========================
+
+CREATE EVENT DailyRestock
+ON SCHEDULE
+EVERY 1 DAY
+DO 
+BEGIN
+	IF Products.NumberOfItems < 50 THEN
+	UPDATE Products SET  NnumberOfItems = 50;
+	END IF;
+END
+
+
+================================================================================================
+
+Drop event syntax
+==============
+DROP EVENT [ IF EXISTS ]
+
+
+===========================================================================================================
+
+GERATE A REPORT 12 HOUR FROM NOW
+------------------------------------------------------------
+
+USE Lucky_Shrub;
+
+
+DELIMITER //
+
+
+CREATE EVENT GenerateRevenueReport 
+ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 12 HOUR
+DO 
+BEGIN
+	INSERT INTO ReportData (OrderID, ClientID, ProductID, Cost, Date)
+	SELECT * FROM Orders
+	WHERE DATE 
+	BETWEEN '2022-08-01' AND '2022-08-31';
+END //
+
+
+=====================================================================================================================
+
+
+REVIEW STOCK AND MAKE SURE AT LEAST 50 UNITS AVAILABE FOR EACH ITEM ON SALE
+========================================================================
+
+CREATE EVENT DailyRestock
+ON SCHEDULE EVERY 1 DAY 
+DO 
+BEGIN 
+	IF Products.NumberOfItems < 50 THEN
+	UPDATE Products SET NumberOfItems = 50;
+	END IF;
+END //
+
+
+
+DROP EVENT IF EXISTS DailyRestock;
+
+===================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

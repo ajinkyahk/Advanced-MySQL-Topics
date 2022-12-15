@@ -1,0 +1,72 @@
+DELIMITER //
+
+
+CREATE TRIGGER OrderQtyCheck 
+BEFORE INSERT
+ON Orders FOR EACH ROW
+BEGIN
+	IF NEW.Quantity <0 THEN
+	SET NEW.Quantity = 0;
+	END IF;
+END //
+
+
+DELMITER ;
+
+
+DROP TRIGGER IF EXISTS Lucky_Shrub.OrderQtyCheck;
+
+
+--------------------------------------------------------------------------------------------------------------
+
+IF YOU DROP THE Orders TABLE THEN ALL THE RELATED TRIGGERS ARE ALSO DELETED.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,219 @@
+TWO MAIN TYPES OF TRIGGERS
+===========================
+
+Row-level
+========
+Trigger invoked for each row
+
+100 rows     ===>    100 row-level triggers    ===>    Table
+
+
+
+Statement-level
+============
+Trigger invoked for each statement
+
+100 rows    ===>    Single trigger    ===>    Table
+
+
+------------------------------------------------------------------------
+
+Depending o when trigger is actioned
+============================
+
+BEFORE
+=======
+Trigger invoked before an action
+
+Trigger   ===>   Action   ===>   Row
+
+
+
+
+AFTER
+======
+Trigger invoked after an action
+
+Action    ===>   Row    ===>    Trigger
+
+==================================================================
+
+
+BEFORE INSERT
+==============
+Invoked before data is inserted
+
+
+
+AFTER INSERT
+============
+Invoked after data is inserted
+
+
+==================================================================
+
+
+BEFORE UPDATE
+===============
+Invoked before data is updated
+
+
+
+AFTER UPDATE
+=============
+Invoked after data is updated
+
+
+=================================================================
+
+BEFORE DELETE
+==============
+Invoked before data is deleted
+
+
+
+AFTER DELETE
+=============
+Invoked after data is deleted
+
+
+==================================================================
+
+MySQL trigger type syntax
+=====================
+
+CREATE TRIGGER trigger_name
+BEFORE INSERT
+ON table_name FOR EACH ROW
+BEGIN
+	statement_logic
+END
+
+
+==================================================================
+
+Want to impose a new constraint on orders table. New rule must state that no minus values
+can be inserted in the table's order quantity field.
+
+
+CREATE TRIGGER OrderQtyCheck
+BEFORE INSERT
+ON Orders FOR EACH ROW
+BEGIN
+	IF NEW.orderQty < 0 THEN
+	SET NEW.orderQty = 0;
+	END IF;
+END
+
+
+
+BEFORE INSERT trigger    ===>   Action    ===>    Table row
+
+
+=================================================================
+
+
+Want to maintain audit trail of all updates made to their oreders.
+
+CREATE TRIGGER LogNewOrderInsert
+AFTER INSERT
+ON Orders FOR EACH ROW
+INSERT INTO Audits VALUES ( 'AFTER', 'A new order was inserted', 'INSERT');
+
+
+=============================================================
+
+Need to create a log that captures the date and time and order record is deleted 
+from the orders table
+
+CREATE TRIGGER AfterDeleteOrder
+AFTER DELETE
+ON Orders FOR EACH ROW
+INSERT INTO Audits
+VALUES( 'AFTER', CONCAT('Order', OLD.OrderID, 'was deleted at', CURRENT_TIME(),
+'on', 'CURRENT_DATE()), 'DELETE');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
