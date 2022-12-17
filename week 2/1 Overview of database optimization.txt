@@ -1,0 +1,78 @@
+Data optimization
+==============
+Improving database performance to reduce the execution time of a query
+
+------------------------------------------------------------------------------------------------
+
+Types of SQL Statements
+====================
+
+Data retrival statements
+===================
+Statements that return data from the database 
+also known as SELECT statements
+
+
+
+Data change statements
+==================
+statements that alter data within the database
+like INSERT, UPDATE, DELETE
+
+
+=========================================================================================================
+
+Data retrival statements optimization
+==============================
+
+Index
+=======
+optimizing SELECT statements typically involves indexes.
+
+Indexes are created on table columns. 
+
+Index     ======>      Table columns
+
+----------------------------------------------------------------------------------------------
+other methods
+============
+
+* Target columns with SELECT
+
+* Use of functions and wildcards and predicates
+
+* Use of INNER JOINS with tables instead of OUTER JOINS
+
+* Deploy DISTINCT and UNION clauses
+
+* Use the ORDER BY clause to sort results
+
+
+
+============================================================================
+
+
+Data change statements optimization
+=============================
+
+UPDATE, DELETE
+================
+
+UPDATE				WHERE
+                        ==============>  	
+DELETE				CLAUSE
+
+NEED TO OPTIMIZE CONDITION IN WHERE CLAUSE
+
+---------------------------------------------------------------------------------
+
+INSERT
+=======
+
+Batch insert     =======>       Table
+
+means inserting more than one row in a single insert operation
+
+
+
+=======================================================================================

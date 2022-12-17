@@ -1,0 +1,47 @@
+Optimizing SELECT (Data retrival statements)
+=====================================
+
+* Target only required columns
+
+* Avoid using FUNCTIONS in predicates
+
+* Avoid using leading WILDCARD in predicates
+
+* Use INNER JOIN where possible
+
+* Use clasues sparingly ( use of DISTINCT and UNION clauses only when necessary)
+
+------------------------------------------------------------------------------------------------------------
+
+Predicate
+========
+Expression that returns a TRUE or FALSE value 
+
+example:
+
+fuction predicate
+==============
+
+WHERE clause     ====>      Indexed column
+
+avoid using functions in the WHERE clause on a column that's indexed
+because this prevents database from using the index.
+
+---------------------------------------------------------------------------------------
+wildcard predicate
+===============
+
+LIKE '%__'       =====>     Indexed column
+
+
+avoid using patterns that begin with a wildcard when combining the LIKE opertor in the WHERE clause.
+MySQL can't make use of index in a column during a search when it's matched against a pattern with a leading wildcard.
+
+================================================================================================
+
+use UNION ALL 
+=============
+UNION ALL eliminates the need for sorting operation and speeds up the execution process.
+
+
+
